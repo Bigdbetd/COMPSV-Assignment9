@@ -1,0 +1,9 @@
+Design Memo
+
+A graph is a good structure for a social network because each person can be represented as a node and each friendship as an edge. Friendships are mutual, so this project uses an undirected graph. When two people become friends, each person's list stores a reference to the other Person object. This makes it easy to see someone's direct connections.
+
+A single list could store all the people, but it would not directly describe who knows whom. Separate connection information would still be needed. A tree would also be limiting because it organizes nodes into a hierarchy with parent and child relationships. Social networks do not have one root, and friends can form cycles or have several shared connections. A graph supports these patterns naturally.
+
+I used an adjacency list because most people are connected to only part of the network. The dictionary lets the program find a person by name in average O(1) time. Each person's friends list stores only actual connections, so total storage is O(V + E), where V is people and E is friendships. Each undirected edge is stored twice.
+
+Checking for an existing friend requires scanning a list, so adding a friendship takes O(d1 + d2) time for the two people's friend counts. Printing the entire network takes O(V + E) traversal time, plus the time to output the names. A set could speed up duplicate checks, but the assignment requires lists. Duplicate people are rejected to preserve existing friendships, and missing people produce a helpful error without changing the network.
